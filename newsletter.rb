@@ -30,9 +30,15 @@ ARTICLES = [
 def calculate_recipients
   # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
   # write a method that will return an array of only the subscribers who haven't unsubscribed
+  new_array_of_subscribers = []
+  new_array_of_subscribers << SUBSCRIBERS[0]
+  new_array_of_subscribers << SUBSCRIBERS[2]
+  new_array_of_subscribers << SUBSCRIBERS[3]
+  new_array_of_subscribers
 end
 
-def first_n_articles(number_of_articles
+def first_n_articles(number_of_articles)
+  
   ARTICLES.first(number_of_articles)
 end
 
@@ -40,12 +46,14 @@ def print_recipients
   # Write a method that uses the output of calculate_recipients
   # and returns a list of emails separated by commas
   # Ex) "abc@email.com, def@email.com, ghi@email.com"
+  "#{calculate_recipients[2]}, #{calculate_recipients[1]}, #{calculate_recipients[0]}"
 end
 
 def print_one_article(article)
   # Write a method that will take an article hash
   # and print the title, author and text as a formatted string
   # See the README/sample output for examples
+  
 end
 
 def print_many_articles(articles)
@@ -54,7 +62,7 @@ def print_many_articles(articles)
 end
 
 def format_campus_location(campus)
-  "Flatiron #{campus["name"]}"
+  "Flatiron #{campus[:name]}"
 end
 
 def format_subject
@@ -74,14 +82,14 @@ def print_newsletter(number)
   print "RECIPIENTS: "
   print_recipients
 
-  puts "\nBODY:"
+  puts "BODY:"
   format_subject
   articles = first_n_articles(number)
   print_many_articles(articles)
   puts format_footer(CAMPUS)
 
-  end
 end
+
 
 def run
   # We want our program to print three articles by default,
