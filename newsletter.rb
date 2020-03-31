@@ -27,55 +27,57 @@ ARTICLES = [
 # Methods to generate the newsletter
 #########################
 def calculate_recipients
-  
+  SUBSCRIBERS.reject do |sub|
+  UNSUBSCRIBED.include?(sub)
   # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
   # write a method that will return an array of only the subscribers who haven't unsubscribed
-  SUBSCRIBERS
-
+  end
 end
 
 def first_n_articles(number_of_articles)
-  ARTICLES.first(number_of_articles)
+  ARTICLES.first(number_of_articles.to_i)
 end
 
 
 def print_recipients
-  emails = calculate_recipients * ", "
+  puts calculate_recipients.join(', ')
   
   # Write a method that uses the output of calculate_recipients
   # and returns a list of emails separated by commas
-  # Ex) "abc@email.com, def@email.com, ghi@email.com"
 end
 
 
-binding.pry
+
 def print_one_article(article)
-  article = ARTICLES.each do |obj|
-    if obj == :title && :author && :text 
-     p article
-    end
-  end 
+  
+end 
   
   # Write a method that will take an article hash
   # and print the title, author and text as a formatted string
   # See the README/sample output for examples
-end
+
  
 def print_many_articles(articles)
+  articles.each do |loner_article|
+    print_one_article(loner_article)
   # Write a method that will take in an array of article hashes
   # and format each one using the print_one_article method
-end 
+  end 
+end
+
 
 def format_campus_location(campus)
-  "Flatiron #{campus["name"]}"
+  campus = CAMPUS
+  "Flatiron#{CAMPUS["name"]}"
 end
 
 def format_subject
-  puts "#{format_campus_location(CAMPUS)} Newsletter - #{DATE}\n\n"
+  campus = CAMPUS
+  puts "#{format_campus_location(campus)} DC Newsletter - #{DATE}\n\n"
 end
 
 def format_footer(campus)
-  "Flatiron Newsletter · #{campus[:name]} · #{campus[:address]} "
+  "Flatiron Newsletter · #{CAMPUS[:name]} · #{CAMPUS[:address]} "
 end
 
 def print_newsletter(number)
@@ -96,9 +98,10 @@ def print_newsletter(number)
 
 end
 
-def run(print_newsletter=3)
+def run
   # We want our program to print three articles by default,
   # but we can change that number here
+  print_newsletter("3")
 end
 
 # When we run "ruby newsletter.rb" in the command line,
