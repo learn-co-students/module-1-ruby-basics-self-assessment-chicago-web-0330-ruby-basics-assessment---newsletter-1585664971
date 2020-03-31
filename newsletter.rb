@@ -1,11 +1,11 @@
 require 'pry'
-
+#a
 #########################
 # Data for the newsletter
 #########################
 require "pry"
 CAMPUS = {
-  "name": "DC",
+  "name": "Flatiron",
   "address": "1440 G St NW, Washington, DC 20005",
 }
 DATE = "Nov 20, 2019"
@@ -26,43 +26,58 @@ ARTICLES = [
 #########################
 # Methods to generate the newsletter
 #########################
-
 def calculate_recipients
+  SUBSCRIBERS.reject do |sub|
+  UNSUBSCRIBED.include?(sub)
   # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
   # write a method that will return an array of only the subscribers who haven't unsubscribed
+  end
 end
 
-def first_n_articles(number_of_articles
-  ARTICLES.first(number_of_articles)
+def first_n_articles(number_of_articles)
+  ARTICLES.first(number_of_articles.to_i)
 end
+
 
 def print_recipients
+  puts calculate_recipients.join(', ')
+  
   # Write a method that uses the output of calculate_recipients
   # and returns a list of emails separated by commas
-  # Ex) "abc@email.com, def@email.com, ghi@email.com"
 end
 
+
+
 def print_one_article(article)
+  
+end 
+  
   # Write a method that will take an article hash
   # and print the title, author and text as a formatted string
   # See the README/sample output for examples
-end
 
+ 
 def print_many_articles(articles)
+  articles.each do |loner_article|
+    print_one_article(loner_article)
   # Write a method that will take in an array of article hashes
   # and format each one using the print_one_article method
+  end 
 end
 
+
 def format_campus_location(campus)
-  "Flatiron #{campus["name"]}"
+  campus = CAMPUS
+  "Flatiron#{CAMPUS["name"]}"
 end
 
 def format_subject
-  puts "#{format_campus_location(CAMPUS)} Newsletter - #{DATE}\n\n"
+  campus = CAMPUS
+  puts "#{format_campus_location(campus)} DC Newsletter - #{DATE}\n\n"
 end
 
 def format_footer(campus)
-  "Flatiron Newsletter · #{campus[:name]} · #{campus[:address]} "
+  "Flatiron Newsletter · #{CAMPUS[:name]} · #{CAMPUS[:address]} "
 end
 
 def print_newsletter(number)
@@ -80,7 +95,7 @@ def print_newsletter(number)
   print_many_articles(articles)
   puts format_footer(CAMPUS)
 
-  end
+
 end
 
 def run
