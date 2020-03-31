@@ -26,6 +26,8 @@ ARTICLES = [
 # Methods to generate the newsletter
 #########################
 
+# For each string within the SUBSCRIBERS array, the method looks up whether it's included
+# in the UNSUBSCRIBED array. Any that are, are rejected, leaving just the subscribers.
 def calculate_recipients
     SUBSCRIBERS.reject do |email|
        UNSUBSCRIBED.include?(email)
