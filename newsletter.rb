@@ -100,3 +100,5 @@ end
 # When we run "ruby newsletter.rb" in the command line,
 # the 'run' method will be called because we're calling it below.
 run
+
+#i love chocolate
