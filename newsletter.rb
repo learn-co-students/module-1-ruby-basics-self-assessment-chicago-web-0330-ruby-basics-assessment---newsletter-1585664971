@@ -1,5 +1,5 @@
 require 'pry'
-
+#a
 #########################
 # Data for the newsletter
 #########################
