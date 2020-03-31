@@ -30,27 +30,53 @@ ARTICLES = [
 def calculate_recipients
   # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
   # write a method that will return an array of only the subscribers who haven't unsubscribed
+
+  receipients = SUBSCRIBERS + UNSUBSCRIBED
+  receipients - UNSUBSCRIBED
 end
 
-def first_n_articles(number_of_articles
-  ARTICLES.first(number_of_articles)
+def first_n_articles(number_of_articles)
+  ARTICLES.first(number_of_articles.to_i)
 end
 
 def print_recipients
   # Write a method that uses the output of calculate_recipients
   # and returns a list of emails separated by commas
   # Ex) "abc@email.com, def@email.com, ghi@email.com"
+  puts calculate_recipients.join(', ')
 end
 
 def print_one_article(article)
   # Write a method that will take an article hash
   # and print the title, author and text as a formatted string
   # See the README/sample output for examples
+
+  article_title = ARTICLES[article][:title]
+  article_author = ARTICLES[article][:author]
+  article_text = ARTICLES[article][:text]
+
+  puts "#{article_title}\nby: #{article_author}\n#{article_text}\n"
 end
+
+print_one_article(0)
 
 def print_many_articles(articles)
   # Write a method that will take in an array of article hashes
   # and format each one using the print_one_article method
+  
+  # NOTE TO SELF: Turn this while loop into an enumerable block
+  # i = 0
+
+  # while i < articles.length do
+  #   puts "#{print_one_article(i)}\n"
+  #   i += 1
+  # end
+
+  # DONE: While loop turned into an enumerable block
+  articles.each do |article|
+    article_index = articles.index(article)
+    puts "#{print_one_article(article_index)}\n"
+  end
 end
 
 def format_campus_location(campus)
@@ -65,7 +91,7 @@ def format_footer(campus)
   "Flatiron Newsletter · #{campus[:name]} · #{campus[:address]} "
 end
 
-def print_newsletter(number)
+def print_newsletter(number=3)
   puts "Generating this week's newsletter...\n\n"
 
   print "SUBJECT: "
@@ -79,14 +105,12 @@ def print_newsletter(number)
   articles = first_n_articles(number)
   print_many_articles(articles)
   puts format_footer(CAMPUS)
-
-  end
 end
 
 def run
   # We want our program to print three articles by default,
   # but we can change that number here
-  print_newsletter("3")
+  print_newsletter(5)
 end
 
 # When we run "ruby newsletter.rb" in the command line,
