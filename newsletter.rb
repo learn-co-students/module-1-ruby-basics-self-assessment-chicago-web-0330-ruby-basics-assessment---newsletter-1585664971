@@ -51,9 +51,7 @@ end
 binding.pry
 def print_one_article(article)
   article = ARTICLES.each do |obj|
-    if obj == :title && :author && :text 
-     p article
-    end
+  
   end 
   
   # Write a method that will take an article hash
